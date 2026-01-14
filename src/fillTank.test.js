@@ -86,7 +86,13 @@ describe('fillTank', () => {
 
     fillTank(customer, 33);
 
-    expect(customer.vehicle.fuelRemains).toBe(3.0);
+    expect(customer).toEqual({
+      money: 1,
+      vehicle: {
+        maxTankCapacity: 40,
+        fuelRemains: 3.0,
+      },
+    });
   });
 
   it('does not pour fuel if poured amount is less than 2 liters', () => {
@@ -120,6 +126,12 @@ describe('fillTank', () => {
 
     fillTank(customer, 33.3333);
 
-    expect(customer.money).toBe(0);
+    expect(customer).toEqual({
+      money: 0,
+      vehicle: {
+        maxTankCapacity: 40,
+        fuelRemains: 3,
+      },
+    });
   });
 });
